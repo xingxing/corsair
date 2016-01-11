@@ -20,6 +20,8 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+(global-set-key "\C-z" 'undo)
+
 ;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
 (require 'dockerfile-mode)
