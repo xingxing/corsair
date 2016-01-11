@@ -20,8 +20,12 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
-;; dockerfile 
+;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
+;; whitespace show
+
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+(require 'dockerfile-mode)
