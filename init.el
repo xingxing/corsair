@@ -7,7 +7,7 @@
 
 (setq column-number-mode t)
 
-(setq inhibit-statup-message t)
+(setq inhibit-startup-message t)
 
 (display-time-mode t)
 
@@ -20,4 +20,8 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+;; dockerfile 
+(add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
