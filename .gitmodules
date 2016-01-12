@@ -16,3 +16,12 @@
 [submodule "vendor/git-commit-mode"]
 	path = vendor/git-commit-mode
 	url = https://github.com/rafl/git-commit-mode.git
+[submodule "vendor/fic-mode"]
+	path = vendor/fic-mode
+	url = https://github.com/lewang/fic-mode.git
+[submodule "vendor/magit"]
+	path = vendor/magit
+	url = https://github.com/magit/magit.git
+[submodule "vendor/dash.el"]
+	path = vendor/dash.el
+	url = https://github.com/magnars/dash.el.git

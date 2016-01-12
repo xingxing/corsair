@@ -63,10 +63,22 @@
 ;; check word spell
 (global-set-key "\C-cs" 'flyspell-mode)
 
-;; FIXME: egg 
-(add-to-list 'load-path "~/.emacs.d/vendor/egg/")
-(require 'egg)
-(global-set-key (kbd "C-x v s") 'egg-status-buffer-mode-map)
+;; FIXME egg 
+(add-to-list 'load-path "~/.emacs.d/vendor/dash.el")
+(add-to-list 'load-path "~/.emacs.d/vendor/magit/lisp")
+(require 'magit)
+
+(with-eval-after-load 'info
+  (info-initialize)
+  (add-to-list 'Info-directory-list
+               "~/.emacs.d/vendor/magit/Documentation/"))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/git-commit-mode/")
 (require 'git-commit)
+
+;; highlight show FIXME TODO ...
+(add-to-list 'load-path "~/.emacs.d/vendor/fic-mode/")
+(require 'fic-mode)
+(add-hook 'emacs-lisp-mode-hook 'fic-mode)
+(add-hook 'makefile-mode 'fic-mode)
+(add-hook 'shell-script-mode 'fic-mode)
