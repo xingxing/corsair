@@ -15,7 +15,9 @@
 
 (show-paren-mode t)
 
-(server-start)
+(if (and (fboundp 'server-running-p) 
+         (not (server-running-p)))
+   (server-start))
 
 (setq auto-save-default nil)
 (setq make-backup-files nil)
@@ -58,8 +60,13 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-(add-to-list 'load-path "~/.emacs.d/vendor/git-commit-mode/")
-(require 'git-commit)
-
 ;; check word spell
 (global-set-key "\C-cs" 'flyspell-mode)
+
+;; FIXME: egg 
+(add-to-list 'load-path "~/.emacs.d/vendor/egg/")
+(require 'egg)
+(global-set-key (kbd "C-x v s") 'egg-status-buffer-mode-map)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/git-commit-mode/")
+(require 'git-commit)
