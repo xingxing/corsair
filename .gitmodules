@@ -4,3 +4,6 @@
 [submodule "vendor/markdown-mode"]
 	path = vendor/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
+[submodule "vendor/egg"]
+	path = vendor/egg
+	url = https://github.com/bogolisk/egg.git
