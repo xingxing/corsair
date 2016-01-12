@@ -1,3 +1,6 @@
 [submodule "vendor/dockerfile-mode"]
 	path = vendor/dockerfile-mode
 	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "vendor/markdown-mode"]
+	path = vendor/markdown-mode
+	url = https://github.com/jrblevin/markdown-mode.git
