@@ -28,8 +28,7 @@
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;; whitespace show
-(add-to-list 'load-path "~/.emacs.d/vendor/")
-(require 'dockerfile-mode)
+(global-set-key "\C-cw" 'whitespace-mode)
 
 ;; markdown mode
 (add-to-list 'load-path "~/.emacs.d/vendor/markdown-mode/")
