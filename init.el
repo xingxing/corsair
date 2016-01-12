@@ -52,3 +52,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/undo-tree/")
 (require 'undo-tree)
 (global-undo-tree-mode)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/git-commit-mode/")
+(require 'git-commit)

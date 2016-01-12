@@ -13,3 +13,6 @@
 [submodule "vendor/undo-tree"]
 	path = vendor/undo-tree
 	url = https://github.com/martinp26/undo-tree.git
+[submodule "vendor/git-commit-mode"]
+	path = vendor/git-commit-mode
+	url = https://github.com/rafl/git-commit-mode.git
