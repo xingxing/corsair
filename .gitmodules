@@ -10,3 +10,6 @@
 [submodule "vendor/smex"]
 	path = vendor/smex
 	url = https://github.com/nonsequitur/smex.git
+[submodule "vendor/undo-tree"]
+	path = vendor/undo-tree
+	url = https://github.com/martinp26/undo-tree.git

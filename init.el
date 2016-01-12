@@ -47,3 +47,8 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; undo-tree
+(add-to-list 'load-path "~/.emacs.d/vendor/undo-tree/")
+(require 'undo-tree)
+(global-undo-tree-mode)
