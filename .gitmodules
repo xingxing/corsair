@@ -7,3 +7,6 @@
 [submodule "vendor/egg"]
 	path = vendor/egg
 	url = https://github.com/bogolisk/egg.git
+[submodule "vendor/smex"]
+	path = vendor/smex
+	url = https://github.com/nonsequitur/smex.git
