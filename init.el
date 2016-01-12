@@ -20,7 +20,12 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+(global-linum-mode t)
+
 (global-set-key "\C-z" 'undo)
+
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
 
 ;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
@@ -55,3 +60,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/vendor/git-commit-mode/")
 (require 'git-commit)
+
+;; check word spell
+(global-set-key "\C-cs" 'flyspell-mode)
