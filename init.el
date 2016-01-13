@@ -17,9 +17,9 @@
 
 (setq lazy-highlight-cleanup nil)
 
-(if (and (fboundp 'server-running-p) 
-         (not (server-running-p)))
-   (server-start))
+(load "server")
+(if (not (server-running-p))
+    (server-start))
 
 (setq auto-save-default nil)
 (setq make-backup-files nil)
@@ -96,3 +96,8 @@
       predictive-add-to-dict-ask nil
       predictive-use-auto-learn-cache nil
             predictive-which-dict t)
+
+;; Ag Search
+(add-to-list 'load-path "~/.emacs.d/vendor/s.el/")
+(add-to-list 'load-path "~/.emacs.d/vendor/ag.el/")
+(require 'ag)
