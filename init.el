@@ -27,7 +27,8 @@
 (global-set-key "\C-z" 'undo)
 
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 4)
+(add-hook 'makefile-mode '(lambda (setq-default indent-tabs-mode 1)))
+(setq default-tab-width 8)
 
 ;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
@@ -61,7 +62,7 @@
 (global-undo-tree-mode)
 
 ;; check word spell
-(global-set-key "\C-cs" 'flyspell-mode)
+(global-set-key (kbd "C-c s") 'flyspell-prog-mode)
 
 ;; FIXME egg 
 (add-to-list 'load-path "~/.emacs.d/vendor/dash.el")
@@ -82,3 +83,14 @@
 (add-hook 'emacs-lisp-mode-hook 'fic-mode)
 (add-hook 'makefile-mode 'fic-mode)
 (add-hook 'shell-script-mode 'fic-mode)
+(global-set-key (kbd "C-c t") 'fic-mode)
+
+;; English
+(add-to-list 'load-path "~/.emacs.d/vendor/predictive/")
+(autoload 'predictive-mode "predictive" "predictive" t)
+(set-default 'predictive-auto-add-to-dict t)
+(setq predictive-main-dict 'rpg-dictionary
+      predictive-auto-learn t
+      predictive-add-to-dict-ask nil
+      predictive-use-auto-learn-cache nil
+            predictive-which-dict t)
