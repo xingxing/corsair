@@ -15,6 +15,8 @@
 
 (show-paren-mode t)
 
+(setq lazy-highlight-cleanup nil)
+
 (if (and (fboundp 'server-running-p) 
          (not (server-running-p)))
    (server-start))
