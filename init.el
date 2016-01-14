@@ -32,6 +32,12 @@
 (add-hook 'makefile-mode '(lambda (setq-default indent-tabs-mode 1)))
 (setq default-tab-width 8)
 
+;; mepla source
+;; http://stable.melpa.org/
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 ;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
 (require 'dockerfile-mode)
