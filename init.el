@@ -66,7 +66,7 @@
 ;; check word spell
 (global-set-key (kbd "C-c s") 'flyspell-prog-mode)
 
-;; FIXME egg 
+;; FIXME egg
 (add-to-list 'load-path "~/.emacs.d/vendor/dash.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/magit/lisp")
 (require 'magit)
@@ -85,7 +85,7 @@
 (add-hook 'emacs-lisp-mode-hook 'fic-mode)
 (add-hook 'makefile-mode 'fic-mode)
 (add-hook 'shell-script-mode 'fic-mode)
-(global-set-key (kbd "C-c t") 'fic-mode)
+(global-set-key (kbd "C-c f") 'fic-mode)
 
 ;; English
 (add-to-list 'load-path "~/.emacs.d/vendor/predictive/")
@@ -101,3 +101,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/s.el/")
 (add-to-list 'load-path "~/.emacs.d/vendor/ag.el/")
 (require 'ag)
+
+;; youdao
+(load-file "~/.emacs.d/vendor/youdao-translate.el/youdao_translate.el")
+(global-set-key (kbd "C-c t") 'youdao-translate)
