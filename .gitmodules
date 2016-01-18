@@ -34,3 +34,6 @@
 [submodule "vendor/youdao-translate.el"]
 	path = vendor/youdao-translate.el
 	url = git@github.com:xingxing/youdao-translate.el.git
+[submodule "vendor/avy"]
+	path = vendor/avy
+	url = https://github.com/abo-abo/avy.git
