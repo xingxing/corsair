@@ -119,3 +119,7 @@
 (add-hook 'cider-mode-hook #'company-mode)
 (setq company-idle-delay nil) ; never start completions automatically
 (global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
+
+;; Color-Theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized-master")
+(load-theme 'solarized t)
