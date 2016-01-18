@@ -116,10 +116,17 @@
 
 ;; [package] Company for auto-complete
 (add-hook 'cider-repl-mode-hook #'company-mode)
-(add-hook 'cider-mode-hook #'company-mode)
+(add-hook 'clojure-mode-hook #'company-mode)
 (setq company-idle-delay nil) ; never start completions automatically
 (global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
 ;; Color-Theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized-master")
 (load-theme 'solarized t)
+
+;; electric-pair-mode
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (electric-pair-mode 1)
+            (define-key python-mode-map "{" 'electric-pair)
+            (define-key python-mode-map "(" 'electric-pair)))
