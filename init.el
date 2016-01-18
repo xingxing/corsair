@@ -111,3 +111,11 @@
 ;; youdao
 (load-file "~/.emacs.d/vendor/youdao-translate.el/youdao_translate.el")
 (global-set-key (kbd "C-c t") 'youdao-translate)
+
+;; [package] Cider for Clojure Programming
+
+;; [package] Company for auto-complete
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+(setq company-idle-delay nil) ; never start completions automatically
+(global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
