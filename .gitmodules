@@ -37,3 +37,6 @@
 [submodule "vendor/avy"]
 	path = vendor/avy
 	url = https://github.com/abo-abo/avy.git
+[submodule "vendor/docker.el"]
+	path = vendor/docker.el
+	url = https://github.com/Silex/docker.el.git
