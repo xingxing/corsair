@@ -43,3 +43,6 @@
 [submodule "vendor/jinja2-mode"]
 	path = vendor/jinja2-mode
 	url = https://github.com/paradoxxxzero/jinja2-mode.git
+[submodule "color-theme/solarized-emacs"]
+	path = color-theme/solarized-emacs
+	url = https://github.com/bbatsov/solarized-emacs.git
