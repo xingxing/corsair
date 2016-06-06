@@ -182,3 +182,24 @@
          (insert filename))
         (t
          (insert (file-relative-name filename)))))
+
+(global-set-key (kbd "C-c f") 'insert-file-name)
+
+;;; rust
+(add-to-list 'load-path "vendor/rust-mode/")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;;; go-lang
+(defun wade-go-hook ()
+  ;Call Gofmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  ;tab == 4 whitespace
+  (setq default-tab-width 4)
+  ; Customize compile command to run go build
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet"))
+  ; Godef jump key binding
+  (local-set-key (kbd "M-.") 'godef-jump))
+(add-hook 'go-mode-hook 'wade-go-hook)

@@ -46,3 +46,12 @@
 [submodule "color-theme/solarized-emacs"]
 	path = color-theme/solarized-emacs
 	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "vendor/rust-mode"]
+	path = vendor/rust-mode
+	url = https://github.com/rust-lang/rust-mode.git
+[submodule "vendor/jdee"]
+	path = vendor/jdee
+	url = git@github.com:xingxing/jdee.git
+[submodule "vendor/gocode"]
+	path = vendor/gocode
+	url = git@github.com:nsf/gocode.git
