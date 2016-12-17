@@ -4,9 +4,6 @@
 [submodule "vendor/markdown-mode"]
 	path = vendor/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode.git
-[submodule "vendor/egg"]
-	path = vendor/egg
-	url = https://github.com/bogolisk/egg.git
 [submodule "vendor/smex"]
 	path = vendor/smex
 	url = https://github.com/nonsequitur/smex.git
@@ -55,3 +52,6 @@
 [submodule "vendor/gocode"]
 	path = vendor/gocode
 	url = git@github.com:nsf/gocode.git
+[submodule "vendor/egg"]
+	path = vendor/egg
+	url = https://github.com/byplayer/egg.git

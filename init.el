@@ -1,3 +1,9 @@
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq user-full-name "Wade Xing")
 (setq user-mail-address "iamxingxing@gmail.com")
 
@@ -25,8 +31,6 @@
 (setq make-backup-files nil)
 
 (global-linum-mode t)
-
-(global-set-key "\C-z" 'undo)
 
 (setq-default indent-tabs-mode nil)
 (add-hook 'makefile-mode '(lambda (setq-default indent-tabs-mode 1)))
@@ -122,18 +126,16 @@
 (global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
 ;; Color-Theme
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized-master")
-;; (load-theme 'solarized t)
-;; (add-hook 'after-init-hook
-;;           (lambda ()
-;;             (set-frame-parameter nil 'background-mode 'dark)
-;;             (set-terminal-parameter nil 'background-mode 'dark)
-;;             (enable-theme 'solarized)))
-;; (add-to-list 'load-path "~/.emacs.d/color-theme/solarized-emacs")
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/solarized-emacs")
-;; (load-theme 'solarized-dark t)
-
-
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized-master")
+(load-theme 'solarized t)
+(add-hook 'after-init-hook
+          (lambda ()
+            (set-frame-parameter nil 'background-mode 'dark)
+            (set-terminal-parameter nil 'background-mode 'dark)
+            (enable-theme 'solarized)))
+(add-to-list 'load-path "~/.emacs.d/color-theme/solarized-emacs")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/solarized-emacs")
+(load-theme 'solarized-dark t)
 
 ;; electric-pair-mode
 (add-hook 'clojure-mode-hook
@@ -203,3 +205,28 @@
   ; Godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'wade-go-hook)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (web-mode jsx-mode elixir-mode alchemist company
+              (company)))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; ;; YAML mode
+(add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode/")
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
+(add-to-list 'elixir-mode-hook (alchemist-mode +1))
