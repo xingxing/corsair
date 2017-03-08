@@ -50,6 +50,9 @@
 ;; whitespace show
 (global-set-key "\C-cw" 'whitespace-mode)
 
+;; 存盘前删除行末多余的空格/空行
+(add-hook 'before-save-hook (lambda () (whitespace-cleanup)))
+
 ;; markdown mode
 (add-to-list 'load-path "~/.emacs.d/vendor/markdown-mode/")
 (autoload 'markdown-mode "markdown-mode"
@@ -225,8 +228,11 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; ;; YAML mode
-(add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode/")
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+;; (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode/")
+;; (require 'yaml-mode)
+;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
+;;  For Phoenix
 (add-to-list 'elixir-mode-hook (alchemist-mode +1))
+(add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
+(setq js-indent-level 2)
