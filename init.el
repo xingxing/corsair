@@ -36,11 +36,11 @@
 (add-hook 'makefile-mode '(lambda (setq-default indent-tabs-mode 1)))
 (setq default-tab-width 8)
 
-;; mepla source
-;; http://stable.melpa.org/
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; package
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t))
 
 ;; dockerfile
 (add-to-list 'load-path "~/.emacs.d/vendor/dockerfile-mode/")
@@ -197,7 +197,7 @@
 
 ;;; go-lang
 (defun wade-go-hook ()
-  ;Call Gofmt before saving
+  ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
   ;tab == 4 whitespace
   (setq default-tab-width 4)
@@ -216,8 +216,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode jsx-mode elixir-mode alchemist company
-              (company)))))
+    (exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
+                          (company)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -225,9 +225,10 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;;; 自动补全
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; ;; YAML mode
+;;;; YAML mode
 ;; (add-to-list 'load-path "~/.emacs.d/vendor/yaml-mode/")
 ;; (require 'yaml-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
@@ -236,3 +237,57 @@
 (add-to-list 'elixir-mode-hook (alchemist-mode +1))
 (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
 (setq js-indent-level 2)
+(flycheck-mix-setup)
+
+;;;; For React
+(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+(require 'flycheck)
+
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; disable jshint since we prefer eslint checking
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(javascript-jshint)))
+
+;; use eslint with web-mode for jsx files
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+
+;; customize flycheck temp file prefix
+(setq-default flycheck-temp-prefix ".flycheck")
+
+;; disable json-jsonlist checking for json files
+(setq-default flycheck-disabled-checkers
+  (append flycheck-disabled-checkers
+    '(json-jsonlist)))
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
+(defun my/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
+;; adjust indents for web-mode to 2 spaces
+(defun my-web-mode-hook ()
+  "Hooks for Web mode. Adjust indents"
+  ;;; http://web-mode.org/
+  (flycheck-mode +1)
+  (web-mode-set-content-type "jsx")
+  (message "now set to: %s" web-mode-content-type)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
+
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+(provide 'init)
+;;; init.el ends here
