@@ -129,16 +129,8 @@
 (global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
 ;; Color-Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized-master")
-(load-theme 'solarized t)
-(add-hook 'after-init-hook
-          (lambda ()
-            (set-frame-parameter nil 'background-mode 'dark)
-            (set-terminal-parameter nil 'background-mode 'dark)
-            (enable-theme 'solarized)))
-(add-to-list 'load-path "~/.emacs.d/color-theme/solarized-emacs")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/solarized-emacs")
-(load-theme 'solarized-dark t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'tangotango t)
 
 ;; electric-pair-mode
 (add-hook 'clojure-mode-hook
@@ -216,8 +208,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
-                          (company)))))
+    (tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
+                      (company)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -288,6 +280,15 @@
   (setq web-mode-code-indent-offset 2))
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
+
+(require 'string-inflection)
+(global-set-key (kbd "C-c i") 'string-inflection-cycle)
+(global-set-key (kbd "C-c C") 'string-inflection-camelcase)        ;; Force to CamelCase
+(global-set-key (kbd "C-c L") 'string-inflection-lower-camelcase)  ;; Force to lowerCamelCase
+(global-set-key (kbd "C-c J") 'string-inflection-java-style-cycle) ;; Cycle through Java styles
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
 
 (provide 'init)
 ;;; init.el ends here
