@@ -10,6 +10,8 @@
 (delete-selection-mode t)
 
 (ido-mode t)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
 
 (setq column-number-mode t)
 
@@ -206,10 +208,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("4e4d9f6e1f5b50805478c5630be80cce40bee4e640077e1a6a7c78490765b03f" default)))
  '(package-selected-packages
    (quote
-    (tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
-                      (company)))))
+    (rebecca-theme php-mode ace-window go-mode yaml-mode dash-at-point tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
+                   (company)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -277,7 +282,8 @@
   (message "now set to: %s" web-mode-content-type)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2))
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2))
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
@@ -289,6 +295,15 @@
 
 ;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+;; ace-window
+(global-set-key (kbd "M-p") 'ace-window)
+
+(add-hook 'window-setup-hook 'on-after-init)
 
 (provide 'init)
 ;;; init.el ends here
