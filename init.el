@@ -9,9 +9,17 @@
 
 (delete-selection-mode t)
 
-(ido-mode t)
-(setq ido-everywhere t)
-(setq ido-enable-flex-matching t)
+;; (ido-mode t)
+;; (setq ido-everywhere t)
+;; (setq ido-enable-flex-matching t)
+
+(helm-mode 1)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; Change the keybinds to whatever you like :)
+(global-set-key (kbd "M-i") 'helm-swoop)
+(global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
 
 (setq column-number-mode t)
 
@@ -62,16 +70,6 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; smex
-(add-to-list 'load-path "~/.emacs.d/vendor/smex/")
-(require 'smex) ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;; undo-tree
 (add-to-list 'load-path "~/.emacs.d/vendor/undo-tree/")
@@ -213,8 +211,8 @@
     ("4e4d9f6e1f5b50805478c5630be80cce40bee4e640077e1a6a7c78490765b03f" default)))
  '(package-selected-packages
    (quote
-    (rebecca-theme php-mode ace-window go-mode yaml-mode dash-at-point tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
-                   (company)))))
+    (edts haskell-mode helm-swoop helm helm-ag rebecca-theme php-mode ace-window go-mode yaml-mode dash-at-point tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
+          (company)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
