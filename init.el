@@ -129,8 +129,11 @@
 (global-set-key (kbd "C-M-i") #'company-complete) ; use M-TAB, a.k.a. C-M-i, as manual trigger
 
 ;; Color-Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'tangotango t)
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/elixify/")
+(load-theme 'solarized t)
+(set-frame-parameter nil 'background-mode 'dark)    ;;选择solarized dark
+(enable-theme 'solarized)
+
 
 ;; electric-pair-mode
 (add-hook 'clojure-mode-hook
@@ -209,10 +212,11 @@
  '(custom-safe-themes
    (quote
     ("4e4d9f6e1f5b50805478c5630be80cce40bee4e640077e1a6a7c78490765b03f" default)))
+ '(elixir-format-mix-path "/usr/local/bin/mix")
  '(package-selected-packages
    (quote
-    (edts haskell-mode helm-swoop helm helm-ag rebecca-theme php-mode ace-window go-mode yaml-mode dash-at-point tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
-          (company)))))
+    (yarn-mode color-theme-solarized base16-theme color-theme-sanityinc-tomorrow hcl-mode edts haskell-mode helm-swoop helm helm-ag rebecca-theme php-mode ace-window go-mode yaml-mode dash-at-point tangotango-theme dracula-theme string-inflection exec-path-from-shell graphql-mode json-mode flycheck flycheck-mix js2-mode web-mode jsx-mode elixir-mode alchemist company
+               (company)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -228,14 +232,23 @@
 ;; (require 'yaml-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
+;; Elixir
+(add-to-list 'load-path "~/.emacs.d/vendor/mix-format.el/")
+(require 'elixir-format)
+
+(defun wade-elixir-hooks()
+    (alchemist-mode +1)
+    (add-hook 'before-save-hook 'elixir-format-before-save))
+
+(add-hook 'elixir-mode-hook 'wade-elixir-hooks)
+
 ;;  For Phoenix
-(add-to-list 'elixir-mode-hook (alchemist-mode +1))
 (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
 (setq js-indent-level 2)
 (flycheck-mix-setup)
 
 ;;;; For React
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?$" . web-mode))
 (require 'flycheck)
 
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -278,6 +291,7 @@
   (flycheck-mode +1)
   (web-mode-set-content-type "jsx")
   (message "now set to: %s" web-mode-content-type)
+  (setq web-mode-enable-auto-pairing t)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
@@ -302,6 +316,8 @@
 (global-set-key (kbd "M-p") 'ace-window)
 
 (add-hook 'window-setup-hook 'on-after-init)
+
+(add-to-list 'auto-mode-alist '("\\.tf\\'" . hcl-mode))
 
 (provide 'init)
 ;;; init.el ends here
